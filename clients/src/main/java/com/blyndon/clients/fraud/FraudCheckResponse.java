@@ -1,4 +1,4 @@
-package com.blyndon.fraud;
+package com.blyndon.clients.fraud;
 
 public record FraudCheckResponse(Boolean isFraudster) {
 }
