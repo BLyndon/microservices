@@ -1,8 +1,8 @@
 package com.blyndon.customer;
 
+import com.blyndon.amqp.RabbitMQMessageProducer;
 import com.blyndon.clients.fraud.FraudCheckResponse;
 import com.blyndon.clients.fraud.FraudClient;
-import com.blyndon.clients.notification.NotificationClient;
 import com.blyndon.clients.notification.NotificationRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -12,8 +12,8 @@ import org.springframework.stereotype.Service;
 public class CustomerService {
 
     private final CustomerRepository customerRepository;
-    private final NotificationClient notificationClient;
     private final FraudClient fraudClient;
+    private final RabbitMQMessageProducer rabbitMQMessageProducer;
 
     public void registerCustomer(CustomerRegistrationRequest request) {
         Customer customer = Customer.builder()
@@ -30,13 +30,16 @@ public class CustomerService {
             throw new IllegalStateException("fraudster");
         }
 
-        notificationClient.sendNotification(
-                new NotificationRequest(
-                        customer.getId(),
-                        customer.getEmail(),
-                        String.format("Hi %s, welcome to Blyndon Bank......",
-                                customer.getFirstName())
-                )
+        final NotificationRequest notificationRequest = new NotificationRequest(
+                customer.getId(),
+                customer.getEmail(),
+                String.format("Hi %s, welcome to Blyndon Bank......",
+                        customer.getFirstName())
+        );
+        rabbitMQMessageProducer.publish(
+                notificationRequest,
+                "internal.exchange",
+                "internal.notification.routing-key"
         );
 
     }
