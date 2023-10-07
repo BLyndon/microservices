@@ -1,4 +1,4 @@
-package com.blyndon;
+package com.blyndon.fraud;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;

@@ -1,4 +1,4 @@
-package com.blyndon;
+package com.blyndon.customer;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

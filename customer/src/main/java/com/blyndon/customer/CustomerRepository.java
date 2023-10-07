@@ -1,4 +1,4 @@
-package com.blyndon;
+package com.blyndon.customer;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

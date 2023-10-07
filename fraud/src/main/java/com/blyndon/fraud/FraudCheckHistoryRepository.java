@@ -1,4 +1,4 @@
-package com.blyndon;
+package com.blyndon.fraud;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

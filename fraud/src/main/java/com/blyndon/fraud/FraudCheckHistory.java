@@ -1,4 +1,4 @@
-package com.blyndon;
+package com.blyndon.fraud;
 
 import jakarta.persistence.*;
 import jakarta.persistence.criteria.CriteriaBuilder;

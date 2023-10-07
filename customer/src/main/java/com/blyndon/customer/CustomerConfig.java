@@ -1,4 +1,4 @@
-package com.blyndon;
+package com.blyndon.customer;
 
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.context.annotation.Bean;

@@ -1,4 +1,4 @@
-package com.blyndon;
+package com.blyndon.customer;
 
 public record CustomerRegistrationRequest(
         String firstName,
